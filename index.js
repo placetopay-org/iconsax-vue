@@ -21,6 +21,7 @@ async function getIcons (style) {
     icons.push({ svg, componentName })
   }
 
+  fs.writeFile('list.js', icons.map((icon) => icon.componentName).join('\n'), 'utf8')
   return icons
 }
 

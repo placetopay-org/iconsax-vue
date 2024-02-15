@@ -1,0 +1,34 @@
+---
+import '@fontsource/inter';
+import IconGrid from '@/components/IconGrid.vue';
+import ControlBar from '@/components/ControlBar.vue';
+import Sooner from '@/components/Sooner';
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content="A web sandbox for the iconsax-vue package." />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="generator" content={Astro.generator} />
+        <title>Iconsax Vue</title>
+    </head>
+    <body>
+        <main class="container mx-auto py-4 px-8">
+            <h1 class="text-2xl text-center">Iconsax <span class="text-[#42b883] font-bold">Vue</span></h1>
+            <p class="text-center text-gray-500 mb-8">A web sandbox for the @palcetopay/iconsax-vue package.</p>
+
+            <ControlBar class:list="mb-8 mx-auto" client:only="vue" />
+            <Sooner client:only="react" />
+            <IconGrid client:only="vue" />
+        </main>
+    </body>
+</html>
+
+<style is:global>
+    body {
+        font-family: 'Inter', sans-serif;
+    }
+</style>
