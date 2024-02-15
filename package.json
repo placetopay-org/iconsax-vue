@@ -1,0 +1,108 @@
+{
+  "name": "iconsax-vue",
+  "version": "0.0.1",
+  "description": "Vue icon components based on the extensive collection of 1000 SVG icons provided by Vuesax Icons.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "node ./index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Vue",
+    "Icons",
+    "Components",
+    "SVG",
+    "Vuesax",
+    "Library",
+    "Vue3"
+  ],
+  "author": "JuanZea",
+  "license": "ISC",
+  "devDependencies": {
+    "@vue/compiler-dom": "^3.4.19",
+    "camelcase": "^8.0.0",
+    "rimraf": "^5.0.5",
+    "standard": "^17.1.0"
+  },
+  "eslintConfig": {
+    "extends": "standard"
+  },
+  "exports": {
+    ".": {
+      "import": "./index.js"
+    },
+    "./bold": {
+      "types": "./dist/bold/index.d.ts",
+      "import": "./dist/bold/index.js"
+    },
+    "./bold/*": {
+      "types": "./dist/bold/*.d.ts",
+      "import": "./dist/bold/*.js"
+    },
+    "./bold/*.js": {
+      "types": "./dist/bold/*.d.ts",
+      "import": "./dist/bold/*.js"
+    },
+    "./broken": {
+      "types": "./dist/broken/index.d.ts",
+      "import": "./dist/broken/index.js"
+    },
+    "./broken/*": {
+      "types": "./dist/broken/*.d.ts",
+      "import": "./dist/broken/*.js"
+    },
+    "./broken/*.js": {
+      "types": "./dist/broken/*.d.ts",
+      "import": "./dist/broken/*.js"
+    },
+    "./bulk": {
+      "types": "./dist/bulk/index.d.ts",
+      "import": "./dist/bulk/index.js"
+    },
+    "./bulk/*": {
+      "types": "./dist/bulk/*.d.ts",
+      "import": "./dist/bulk/*.js"
+    },
+    "./bulk/*.js": {
+      "types": "./dist/bulk/*.d.ts",
+      "import": "./dist/bulk/*.js"
+    },
+    "./linear": {
+      "types": "./dist/linear/index.d.ts",
+      "import": "./dist/linear/index.js"
+    },
+    "./linear/*": {
+      "types": "./dist/linear/*.d.ts",
+      "import": "./dist/linear/*.js"
+    },
+    "./linear/*.js": {
+      "types": "./dist/linear/*.d.ts",
+      "import": "./dist/linear/*.js"
+    },
+    "./outline": {
+      "types": "./dist/outline/index.d.ts",
+      "import": "./dist/outline/index.js"
+    },
+    "./outline/*": {
+      "types": "./dist/outline/*.d.ts",
+      "import": "./dist/outline/*.js"
+    },
+    "./outline/*.js": {
+      "types": "./dist/outline/*.d.ts",
+      "import": "./dist/outline/*.js"
+    },
+    "./twotone": {
+      "types": "./dist/twotone/index.d.ts",
+      "import": "./dist/twotone/index.js"
+    },
+    "./twotone/*": {
+      "types": "./dist/twotone/*.d.ts",
+      "import": "./dist/twotone/*.js"
+    },
+    "./twotone/*.js": {
+      "types": "./dist/twotone/*.d.ts",
+      "import": "./dist/twotone/*.js"
+    }
+  }
+}
