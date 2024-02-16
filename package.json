@@ -19,6 +19,7 @@
   ],
   "author": "JuanZea",
   "license": "ISC",
+  "files": ["dist"],
   "devDependencies": {
     "@vue/compiler-dom": "^3.4.19",
     "camelcase": "^8.0.0",
