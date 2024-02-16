@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import * as boldIcons from 'iconsax-vue/bold';
-import * as outlineIcons from 'iconsax-vue/outline';
-import * as bulkIcons from 'iconsax-vue/bulk';
-import * as linearIcons from 'iconsax-vue/linear';
-import * as twoToneIcons from 'iconsax-vue/twotone';
-import * as brokenIcons from 'iconsax-vue/broken';
+import * as boldIcons from '@placetopay/iconsax-vue/bold';
+import * as outlineIcons from '@placetopay/iconsax-vue/outline';
+import * as bulkIcons from '@placetopay/iconsax-vue/bulk';
+import * as linearIcons from '@placetopay/iconsax-vue/linear';
+import * as twoToneIcons from '@placetopay/iconsax-vue/twotone';
+import * as brokenIcons from '@placetopay/iconsax-vue/broken';
 import { $activeIcon, $activeStyle, $query } from '@/store';
 import { useStore } from '@nanostores/vue';
 
