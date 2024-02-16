@@ -8,5 +8,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Color attribute in all svg files is ignored.
 - Demo link on README.md file.
 - CHANGELOG.md file.

@@ -9,19 +9,27 @@ const transform = (svg) => {
   return code.replace('export function', 'export default function')
 }
 
+const prepareSvg = (svg) => {
+  svg = svg.replace(/fill="#[0-9a-fA-F]{6}"/g, '')
+  svg = svg.replace(/stroke="#[0-9a-fA-F]{6}"/g, '')
+  svg = svg.replace(/width="24" height="24"/g, '')
+  // svg = svg.replace(/fill="none"/, 'fill="#000"') Default color broke the linear icons
+  return svg
+}
+
 async function getIcons (style) {
   const files = await fs.readdir('./src/' + style)
 
   const icons = []
 
   for (const file of files) {
-    const svg = await fs.readFile(`./src/${style}/${file}`, 'utf8')
+    const svg = prepareSvg(await fs.readFile(`./src/${style}/${file}`, 'utf8'))
+
     const componentName = `${camelcase(file.replace(/\.svg$/, ''), { pascalCase: true })}Icon`
 
     icons.push({ svg, componentName })
   }
 
-  fs.writeFile('list.js', icons.map((icon) => icon.componentName).join('\n'), 'utf8')
   return icons
 }
 
