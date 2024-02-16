@@ -6,5 +6,7 @@ import react from '@astrojs/react'
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://placetopay-org.github.io',
+  base: '/iconsax-vue',
   integrations: [tailwind(), vue(), react()]
 })
