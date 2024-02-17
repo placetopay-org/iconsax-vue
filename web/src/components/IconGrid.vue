@@ -7,6 +7,7 @@ import * as twoToneIcons from '@placetopay/iconsax-vue/twotone';
 import * as brokenIcons from '@placetopay/iconsax-vue/broken';
 import { $activeIcon, $activeStyle, $query } from '@/store';
 import { useStore } from '@nanostores/vue';
+import { computed } from 'vue';
 
 const query = useStore($query);
 const activeStyle = useStore($activeStyle);
@@ -28,6 +29,10 @@ const Icons = {
 }
 
 const icons = Object.keys(boldIcons).map(icon => icon.replace('Icon', ''));
+
+const styleClass = computed(() => {
+    return ['Bold', 'Outline', 'Bulk'].includes(activeStyle.value) ? 'fill-[#000]' : 'stroke-[#000]'
+})
 </script>
 
 <template>
@@ -35,7 +40,7 @@ const icons = Object.keys(boldIcons).map(icon => icon.replace('Icon', ''));
         <template v-for="icon in icons">
             <article v-if="Icons[activeStyle][`${icon}Icon`] && isFiltered(icon)" tabindex="0" @click="() => copyIcon(icon)" class="group focus-visible:outline-none">
                 <div class="border shadow-sm rounded-md flex justify-center items-center p-8 cursor-pointer group group-hover:scale-110 group-focus-visible:scale-110 active:scale-100 duration-100 ease-in-out">
-                    <component :is="Icons[activeStyle][`${icon}Icon`]" class="w-6 h-6 group-hover:scale-150 group-focus-visible:scale-150 duration-100 ease-in-out" />
+                    <component :is="Icons[activeStyle][`${icon}Icon`]" :class="['w-6 h-6 group-hover:scale-150 group-focus-visible:scale-150 duration-100 ease-in-out', styleClass]" />
                 </div>
                 <p class="text-xs text-center mt-2 text-gray-500 group-hover:text-gray-900">{{icon}}</p>
             </article>
