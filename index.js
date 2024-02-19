@@ -1,6 +1,6 @@
 import { getArgs, read, write, buildIcons, getIconGroupsNames } from './utils.js'
 
-const updatePackageJson = async (distFolder = 'dist', path = './package.json') => {
+const updatePackageJson = async (distFolder = './dist', path = './package.json') => {
   const pkg = JSON.parse(await read(path))
   pkg.exports = {}
   pkg.exports['.'] = { import: './index.js' }
