@@ -15,7 +15,7 @@ export default function Sooner() {
     if (activeIcon) {
       const code = `
         <script setup>
-        import { ${activeIcon}Icon } from '@placetopay/iconsax-vue/${activeStyle}';
+        import { ${activeIcon}Icon } from '@placetopay/iconsax-vue/${activeStyle.toLowerCase()}';
         </script>
 
         <template>
@@ -25,7 +25,7 @@ export default function Sooner() {
 
       const promise = codeToHtml(code, {
         lang: 'vue',
-        theme: 'github-light'
+        theme: 'github-light',
       });
 
       toast.promise(promise, {
@@ -37,7 +37,7 @@ export default function Sooner() {
             <h1 className='font-semibold'>{activeIcon} icon copied to clipboard!</h1>
           </header>
           <main className='overflow-hidden'>
-            <div className='-translate-x-14' dangerouslySetInnerHTML={{__html: html}} />
+            <div className='-translate-x-14 text-[15px]' dangerouslySetInnerHTML={{__html: html}} />
           </main>
           </div>;
         },
@@ -46,6 +46,6 @@ export default function Sooner() {
   }, [activeIcon]);
 
     return (
-      <Toaster position="bottom-left" duration={50000} closeButton visibleToasts={2} toastOptions={{style: { width: 'fit-content'}}} />
+      <Toaster position="bottom-left" duration={5000} closeButton visibleToasts={2} toastOptions={{style: { width: 'fit-content'}}} />
     );
 }
