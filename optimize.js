@@ -24,7 +24,17 @@ async function main () {
       const svgContent = await read(filePath)
       const svgOptimized = optimize(svgContent, {
         path: resolve(filePath),
-        multipass: true
+        multipass: true,
+        plugins: [
+          {
+            name: 'preset-default',
+            params: {
+              overrides: {
+                removeViewBox: false
+              }
+            }
+          }
+        ]
       })
 
       await write(`${groupPath}/${fileName}`, svgOptimized.data)
