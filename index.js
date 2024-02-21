@@ -28,7 +28,7 @@ async function main () {
   const args = getArgs(process.argv)
   if (args.error) return console.error(args.error)
 
-  console.log('Building icons...')
+  console.log(`Building icons... (${args.sourceFolder} -> ${args.distFolder})`)
   await buildIcons(args.sourceFolder, args.distFolder)
 
   console.log('Updating package.json...')
