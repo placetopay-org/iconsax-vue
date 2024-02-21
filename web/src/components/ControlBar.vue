@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { STab, STabItem, SInput } from '@placetopay/spartan-vue'
+import { FilterSearchIcon } from '@placetopay/iconsax-vue/twotone';
 import { $activeStyle, $query, $activeColor } from '@/store';
 import { useStore } from '@nanostores/vue';
 
@@ -18,7 +19,7 @@ const style = useStore($activeStyle)
 
 <template>
     <div class="flex justify-center flex-col items-center gap-4 w-fit">
-        <SInput :modelValue="query" @update:model-value="$query.set" placeholder="Search all icons" />
+        <SInput :right-icon="FilterSearchIcon" :modelValue="query" @update:model-value="$query.set" placeholder="Search all icons" />
         <section class="w-full flex justify-between items-center gap-4">
             <STab :modelValue="style" @update:model-value="$activeStyle.set" variant="vetches">
                 <STabItem>Bold</STabItem>
