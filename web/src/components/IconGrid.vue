@@ -17,7 +17,7 @@ const isFiltered = (icon: string) => icon.toLocaleLowerCase().includes(query.val
 
 const copyIcon = (icon: string) => {
     $activeIcon.set(icon);
-    navigator.clipboard.writeText(`<${icon}Icon class="fill-[${activeColor.value}] h-6 w-6" />`);
+    navigator.clipboard.writeText(`${icon}Icon`);
 }
 
 const Icons = {
@@ -30,10 +30,6 @@ const Icons = {
 }
 
 const icons = Object.keys(boldIcons).map(icon => icon.replace('Icon', ''));
-
-const style = computed(() => {
-    return ['Bold', 'Outline', 'Bulk'].includes(activeStyle.value) ? { fill: activeColor.value } : { stroke: activeColor.value }
-})
 </script>
 
 <template>
@@ -41,7 +37,7 @@ const style = computed(() => {
         <template v-for="icon in icons">
             <article v-if="Icons[activeStyle][`${icon}Icon`] && isFiltered(icon)" tabindex="0" @click="() => copyIcon(icon)" class="group focus-visible:outline-none">
                 <div class="border shadow-sm rounded-md flex justify-center items-center p-8 cursor-pointer group group-hover:scale-110 group-focus-visible:scale-110 active:scale-100 duration-100 ease-in-out">
-                    <component :is="Icons[activeStyle][`${icon}Icon`]" :class="['w-9 h-9 group-hover:scale-150 group-focus-visible:scale-150 duration-100 ease-in-out']" :style="style" />
+                    <component :is="Icons[activeStyle][`${icon}Icon`]" :class="['w-9 h-9 group-hover:scale-150 group-focus-visible:scale-150 duration-100 ease-in-out']" :style="{ color: activeColor }" />
                 </div>
                 <p class="text-xs text-center mt-2 text-gray-500 group-hover:text-gray-900">{{icon}}</p>
             </article>

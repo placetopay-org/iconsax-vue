@@ -33,7 +33,8 @@ async function main () {
                 removeViewBox: false
               }
             }
-          }
+          },
+          'removeDimensions'
         ]
       })
 

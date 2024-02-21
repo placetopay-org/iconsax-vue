@@ -33,18 +33,24 @@ export const getArgs = (args) => {
   }
 }
 
-const prepareSvg = svg => {
-  let isFilled = false
-  svg = svg.replace(/fill="none"/g, '--temp--="currentColor"')
+const prepareSvg = svg => svg.replace(/(fill|stroke)="(#[0-9a-fA-F]+)"/g, '$1="currentColor"')
 
-  svg = svg.replace(/fill="#[0-9a-fA-F]{6}"/g, () => { isFilled = true; return '' })
-  svg = svg.replace(/stroke="#[0-9a-fA-F]{6}"/g, '')
+// const prepareSvg = svg => {
+//   let hasFill = false
+//   let hasStroke = false
 
-  svg = svg.replace(/--temp--/g, isFilled ? 'fill' : 'fill="none" stroke')
+//   svg = svg.replace(/fill="none"/g, '--temp--')
 
-  svg = svg.replace(/width="24" height="24"/g, '')
-  return svg
-}
+//   svg = svg.replace(/fill="#[0-9a-fA-F]{6}"/g, (match) => { if (match) hasFill = true; return '' })
+//   svg = svg.replace(/stroke="#[0-9a-fA-F]{6}"/g, (match) => { if (match) hasStroke = true; return '' })
+
+//   let config = ''
+//   if (hasFill) config = 'fill="currentColor"'
+//   if (hasStroke) config = 'fill="none" stroke="currentColor"'
+//   svg = svg.replace(/--temp--/g, config)
+
+//   return svg
+// }
 
 const compileVue = source => {
   const { code } = compile(source, { mode: 'module' })

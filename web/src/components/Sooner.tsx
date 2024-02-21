@@ -1,6 +1,6 @@
 import { Toaster, toast } from 'sonner'
 import { useStore } from '@nanostores/react';
-import { $activeIcon, $activeStyle, $activeColor, $useFill } from '@/store';
+import { $activeIcon, $activeStyle, $activeColor } from '@/store';
 import { useEffect } from 'react';
 import { codeToHtml } from 'shiki/bundle/web'
 
@@ -9,7 +9,6 @@ export default function Sooner() {
   const activeIcon = useStore($activeIcon);
   const activeStyle = useStore($activeStyle);
   const activeColor = useStore($activeColor);
-  const useFill = useStore($useFill);
 
   useEffect(() => {
     if (activeIcon) {
@@ -19,7 +18,7 @@ export default function Sooner() {
         </script>
 
         <template>
-          <${activeIcon}Icon class="${useFill ? 'fill' : 'stroke'}-[${activeColor}] h-6 w-6" />
+          <${activeIcon}Icon class="text-[${activeColor}] h-6 w-6" />
         </template>
       `;
 
