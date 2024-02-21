@@ -8,6 +8,7 @@ const updatePackageJson = async (distFolder = './dist', path = './package.json')
   const groups = await getIconGroupsNames()
 
   for (const group of groups) {
+    console.log('Exporting', group)
     const exportPath = `${distFolder}/${group}/`
 
     pkg.exports[`./${group}`] = {
