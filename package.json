@@ -1,6 +1,6 @@
 {
   "name": "@placetopay/iconsax-vue",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Vue icon components based on the extensive collection of 1000 SVG icons provided by Vuesax Icons.",
   "main": "index.js",
   "type": "module",
