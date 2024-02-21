@@ -34,8 +34,14 @@ export const getArgs = (args) => {
 }
 
 const prepareSvg = svg => {
-  svg = svg.replace(/fill="#[0-9a-fA-F]{6}"/g, '')
+  let isFilled = false
+  svg = svg.replace(/fill="none"/g, '--temp--="currentColor"')
+
+  svg = svg.replace(/fill="#[0-9a-fA-F]{6}"/g, () => { isFilled = true; return '' })
   svg = svg.replace(/stroke="#[0-9a-fA-F]{6}"/g, '')
+
+  svg = svg.replace(/--temp--/g, isFilled ? 'fill' : 'fill="none" stroke')
+
   svg = svg.replace(/width="24" height="24"/g, '')
   return svg
 }
