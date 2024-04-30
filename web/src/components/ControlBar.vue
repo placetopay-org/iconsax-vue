@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { STab, STabItem, SInput, SSwitch } from '@placetopay/spartan-vue'
+import { STab, STabItem, SInput } from '@placetopay/spartan-vue'
 import { FilterSearchIcon } from '@placetopay/iconsax-vue/twotone';
-import { $activeStyle, $query, $activeColor, $crypto } from '@/store';
+import { $activeStyle, $query, $activeColor } from '@/store';
 import { useStore } from '@nanostores/vue';
 
 let timerId: number;
@@ -15,7 +15,6 @@ function changeColorDebounce(event: Event) {
 const query = useStore($query)
 const color = useStore($activeColor)
 const style = useStore($activeStyle)
-const crypto = useStore($crypto)
 </script>
 
 <template>
@@ -38,7 +37,5 @@ const crypto = useStore($crypto)
                 <STabItem>Broken</STabItem>
             </STab>  
         </section>
-
-        <SSwitch class="self-start" :modelValue="crypto" icon @update:model-value="$crypto.set">Crypto Icons</SSwitch>
     </div>
 </template>
