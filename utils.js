@@ -5,6 +5,7 @@ import { compile } from '@vue/compiler-dom'
 import { rimraf } from 'rimraf'
 
 let iconGroups = null
+let iconVariants = null
 const append = (file, data) => appendFile(file, data, 'utf8')
 
 export const write = (file, data) => writeFile(file, data, 'utf8')
@@ -15,9 +16,14 @@ export const cleanAndMkdir = async dir => {
   mkdir(dir)
 }
 
-export const getIconGroupsNames = async () => {
+export const getIconGroups = async () => {
   if (!iconGroups) iconGroups = await readdir('./src/')
   return iconGroups
+}
+
+export const getIconVariants = async group => {
+  if (!iconVariants) iconVariants = await readdir(`./src/${group}`)
+  return iconVariants
 }
 
 export const getArgs = (args) => {
@@ -35,23 +41,6 @@ export const getArgs = (args) => {
 
 const prepareSvg = svg => svg.replace(/(fill|stroke)="(#[0-9a-fA-F]+)"/g, '$1="currentColor"')
 
-// const prepareSvg = svg => {
-//   let hasFill = false
-//   let hasStroke = false
-
-//   svg = svg.replace(/fill="none"/g, '--temp--')
-
-//   svg = svg.replace(/fill="#[0-9a-fA-F]{6}"/g, (match) => { if (match) hasFill = true; return '' })
-//   svg = svg.replace(/stroke="#[0-9a-fA-F]{6}"/g, (match) => { if (match) hasStroke = true; return '' })
-
-//   let config = ''
-//   if (hasFill) config = 'fill="currentColor"'
-//   if (hasStroke) config = 'fill="none" stroke="currentColor"'
-//   svg = svg.replace(/--temp--/g, config)
-
-//   return svg
-// }
-
 const compileVue = source => {
   const { code } = compile(source, { mode: 'module' })
   return code.replace('export function', 'export default function')
@@ -63,31 +52,38 @@ const buildTypes = componentName => [
   `export default ${componentName};`
 ].join('\n')
 
-export const buildIcons = async (sourceFolder = 'src', distFolder = 'dist') => {
+export const buildIcons = async (sourceFolder = './src', distFolder = './dist') => {
   await cleanAndMkdir(distFolder)
 
-  const groups = await getIconGroupsNames()
+  const groups = await getIconGroups()
   await groups.forEach(async group => {
-    const groupPath = `./${distFolder}/${group}`
+    const groupPath = `${distFolder}/${group}`
     mkdir(groupPath)
-    await write(`${groupPath}/index.js`, '')
-    await write(`${groupPath}/index.d.js`, '')
 
-    const fileNames = await readdir(`./${sourceFolder}/${group}`)
+    const variants = await getIconVariants(group)
+    await variants.forEach(async variant => {
+      const variantPath = `${groupPath}/${variant}`
+      mkdir(variantPath)
 
-    fileNames.forEach(async (fileName) => {
-      const componentName = `${camelcase(fileName.replace(/\.svg$/, ''), { pascalCase: true })}Icon`
-      const filePath = `${groupPath}/${componentName}`
+      await write(`${variantPath}/index.js`, '')
+      await write(`${variantPath}/index.d.js`, '')
 
-      const svgContent = await read(`./${sourceFolder}/${group}/${fileName}`)
-      const source = prepareSvg(svgContent)
+      const fileNames = await readdir(`${sourceFolder}/${group}/${variant}`)
 
-      await write(`${filePath}.d.ts`, buildTypes(componentName))
-      await write(`${filePath}.js`, compileVue(source))
+      fileNames.forEach(async (fileName) => {
+        const componentName = `${camelcase(fileName.replace(/\.svg$/, '').replace(/-\(.*\)/, '').replace(/\(.*\)/, ''), { pascalCase: true })}Icon`
+        const filePath = `${variantPath}/${componentName}`
 
-      const indexExport = `export { default as ${componentName} } from './${componentName}`
-      await append(`${groupPath}/index.js`, `${indexExport}.js'\n`)
-      await append(`${groupPath}/index.d.ts`, `${indexExport}'\n`)
+        const svgContent = await read(`${sourceFolder}/${group}/${variant}/${fileName}`)
+        const source = prepareSvg(svgContent)
+
+        await write(`${filePath}.d.ts`, buildTypes(componentName))
+        await write(`${filePath}.js`, compileVue(source))
+
+        const indexExport = `export { default as ${componentName} } from './${componentName}`
+        await append(`${variantPath}/index.js`, `${indexExport}.js'\n`)
+        await append(`${variantPath}/index.d.ts`, `${indexExport}'\n`)
+      })
     })
   })
 }

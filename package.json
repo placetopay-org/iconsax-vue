@@ -39,76 +39,148 @@
       "import": "./index.js"
     },
     "./bold": {
-      "types": "./dist/bold/index.d.ts",
-      "import": "./dist/bold/index.js"
+      "types": "./dist/Base/bold/index.d.ts",
+      "import": "./dist/Base/bold/index.js"
     },
     "./bold/*.js": {
-      "types": "./dist/bold/*.d.ts",
-      "import": "./dist/bold/*.js"
+      "types": "./dist/Base/bold/*.d.ts",
+      "import": "./dist/Base/bold/*.js"
     },
     "./bold/*": {
-      "types": "./dist/bold/*.d.ts",
-      "import": "./dist/bold/*.js"
+      "types": "./dist/Base/bold/*.d.ts",
+      "import": "./dist/Base/bold/*.js"
     },
     "./broken": {
-      "types": "./dist/broken/index.d.ts",
-      "import": "./dist/broken/index.js"
+      "types": "./dist/Base/broken/index.d.ts",
+      "import": "./dist/Base/broken/index.js"
     },
     "./broken/*.js": {
-      "types": "./dist/broken/*.d.ts",
-      "import": "./dist/broken/*.js"
+      "types": "./dist/Base/broken/*.d.ts",
+      "import": "./dist/Base/broken/*.js"
     },
     "./broken/*": {
-      "types": "./dist/broken/*.d.ts",
-      "import": "./dist/broken/*.js"
+      "types": "./dist/Base/broken/*.d.ts",
+      "import": "./dist/Base/broken/*.js"
     },
     "./bulk": {
-      "types": "./dist/bulk/index.d.ts",
-      "import": "./dist/bulk/index.js"
+      "types": "./dist/Base/bulk/index.d.ts",
+      "import": "./dist/Base/bulk/index.js"
     },
     "./bulk/*.js": {
-      "types": "./dist/bulk/*.d.ts",
-      "import": "./dist/bulk/*.js"
+      "types": "./dist/Base/bulk/*.d.ts",
+      "import": "./dist/Base/bulk/*.js"
     },
     "./bulk/*": {
-      "types": "./dist/bulk/*.d.ts",
-      "import": "./dist/bulk/*.js"
+      "types": "./dist/Base/bulk/*.d.ts",
+      "import": "./dist/Base/bulk/*.js"
     },
     "./linear": {
-      "types": "./dist/linear/index.d.ts",
-      "import": "./dist/linear/index.js"
+      "types": "./dist/Base/linear/index.d.ts",
+      "import": "./dist/Base/linear/index.js"
     },
     "./linear/*.js": {
-      "types": "./dist/linear/*.d.ts",
-      "import": "./dist/linear/*.js"
+      "types": "./dist/Base/linear/*.d.ts",
+      "import": "./dist/Base/linear/*.js"
     },
     "./linear/*": {
-      "types": "./dist/linear/*.d.ts",
-      "import": "./dist/linear/*.js"
+      "types": "./dist/Base/linear/*.d.ts",
+      "import": "./dist/Base/linear/*.js"
     },
     "./outline": {
-      "types": "./dist/outline/index.d.ts",
-      "import": "./dist/outline/index.js"
+      "types": "./dist/Base/outline/index.d.ts",
+      "import": "./dist/Base/outline/index.js"
     },
     "./outline/*.js": {
-      "types": "./dist/outline/*.d.ts",
-      "import": "./dist/outline/*.js"
+      "types": "./dist/Base/outline/*.d.ts",
+      "import": "./dist/Base/outline/*.js"
     },
     "./outline/*": {
-      "types": "./dist/outline/*.d.ts",
-      "import": "./dist/outline/*.js"
+      "types": "./dist/Base/outline/*.d.ts",
+      "import": "./dist/Base/outline/*.js"
     },
     "./twotone": {
-      "types": "./dist/twotone/index.d.ts",
-      "import": "./dist/twotone/index.js"
+      "types": "./dist/Base/twotone/index.d.ts",
+      "import": "./dist/Base/twotone/index.js"
     },
     "./twotone/*.js": {
-      "types": "./dist/twotone/*.d.ts",
-      "import": "./dist/twotone/*.js"
+      "types": "./dist/Base/twotone/*.d.ts",
+      "import": "./dist/Base/twotone/*.js"
     },
     "./twotone/*": {
-      "types": "./dist/twotone/*.d.ts",
-      "import": "./dist/twotone/*.js"
+      "types": "./dist/Base/twotone/*.d.ts",
+      "import": "./dist/Base/twotone/*.js"
+    },
+    "./Crypto/bold": {
+      "types": "./dist/Crypto/bold/index.d.ts",
+      "import": "./dist/Crypto/bold/index.js"
+    },
+    "./Crypto/bold/*.js": {
+      "types": "./dist/Crypto/bold/*.d.ts",
+      "import": "./dist/Crypto/bold/*.js"
+    },
+    "./Crypto/bold/*": {
+      "types": "./dist/Crypto/bold/*.d.ts",
+      "import": "./dist/Crypto/bold/*.js"
+    },
+    "./Crypto/broken": {
+      "types": "./dist/Crypto/broken/index.d.ts",
+      "import": "./dist/Crypto/broken/index.js"
+    },
+    "./Crypto/broken/*.js": {
+      "types": "./dist/Crypto/broken/*.d.ts",
+      "import": "./dist/Crypto/broken/*.js"
+    },
+    "./Crypto/broken/*": {
+      "types": "./dist/Crypto/broken/*.d.ts",
+      "import": "./dist/Crypto/broken/*.js"
+    },
+    "./Crypto/bulk": {
+      "types": "./dist/Crypto/bulk/index.d.ts",
+      "import": "./dist/Crypto/bulk/index.js"
+    },
+    "./Crypto/bulk/*.js": {
+      "types": "./dist/Crypto/bulk/*.d.ts",
+      "import": "./dist/Crypto/bulk/*.js"
+    },
+    "./Crypto/bulk/*": {
+      "types": "./dist/Crypto/bulk/*.d.ts",
+      "import": "./dist/Crypto/bulk/*.js"
+    },
+    "./Crypto/linear": {
+      "types": "./dist/Crypto/linear/index.d.ts",
+      "import": "./dist/Crypto/linear/index.js"
+    },
+    "./Crypto/linear/*.js": {
+      "types": "./dist/Crypto/linear/*.d.ts",
+      "import": "./dist/Crypto/linear/*.js"
+    },
+    "./Crypto/linear/*": {
+      "types": "./dist/Crypto/linear/*.d.ts",
+      "import": "./dist/Crypto/linear/*.js"
+    },
+    "./Crypto/outline": {
+      "types": "./dist/Crypto/outline/index.d.ts",
+      "import": "./dist/Crypto/outline/index.js"
+    },
+    "./Crypto/outline/*.js": {
+      "types": "./dist/Crypto/outline/*.d.ts",
+      "import": "./dist/Crypto/outline/*.js"
+    },
+    "./Crypto/outline/*": {
+      "types": "./dist/Crypto/outline/*.d.ts",
+      "import": "./dist/Crypto/outline/*.js"
+    },
+    "./Crypto/twotone": {
+      "types": "./dist/Crypto/twotone/index.d.ts",
+      "import": "./dist/Crypto/twotone/index.js"
+    },
+    "./Crypto/twotone/*.js": {
+      "types": "./dist/Crypto/twotone/*.d.ts",
+      "import": "./dist/Crypto/twotone/*.js"
+    },
+    "./Crypto/twotone/*": {
+      "types": "./dist/Crypto/twotone/*.d.ts",
+      "import": "./dist/Crypto/twotone/*.js"
     }
   }
 }

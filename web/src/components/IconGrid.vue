@@ -5,13 +5,22 @@ import * as bulkIcons from '@placetopay/iconsax-vue/bulk';
 import * as linearIcons from '@placetopay/iconsax-vue/linear';
 import * as twoToneIcons from '@placetopay/iconsax-vue/twotone';
 import * as brokenIcons from '@placetopay/iconsax-vue/broken';
-import { $activeIcon, $activeStyle, $query, $activeColor } from '@/store';
+
+import * as cryptoBoldIcons from '@placetopay/iconsax-vue/Crypto/bold';
+import * as cryptoOutlineIcons from '@placetopay/iconsax-vue/Crypto/outline';
+import * as cryptoBulkIcons from '@placetopay/iconsax-vue/Crypto/bulk';
+import * as cryptoLinearIcons from '@placetopay/iconsax-vue/Crypto/linear';
+import * as cryptoTwoToneIcons from '@placetopay/iconsax-vue/Crypto/twotone';
+import * as cryptoBrokenIcons from '@placetopay/iconsax-vue/Crypto/broken';
+
+import { $activeIcon, $activeStyle, $query, $activeColor, $crypto } from '@/store';
 import { useStore } from '@nanostores/vue';
 import { computed } from 'vue';
 
 const query = useStore($query);
 const activeColor = useStore($activeColor);
 const activeStyle = useStore($activeStyle);
+const crypto = useStore($crypto);
 
 const isFiltered = (icon: string) => icon.toLocaleLowerCase().includes(query.value.toLocaleLowerCase())
 
@@ -33,6 +42,7 @@ const icons = Object.keys(boldIcons).map(icon => icon.replace('Icon', ''));
 </script>
 
 <template>
+    <pre>{{ crypto }}</pre>
     <section class="grid grid-cols-[repeat(auto-fill,minmax(8rem,1fr))] gap-x-6 gap-y-4">
         <template v-for="icon in icons">
             <article v-if="Icons[activeStyle][`${icon}Icon`] && isFiltered(icon)" tabindex="0" @click="() => copyIcon(icon)" class="group focus-visible:outline-none">

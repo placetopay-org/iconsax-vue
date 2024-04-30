@@ -1,7 +1,7 @@
 import { resolve } from 'node:path'
 import { mkdir, readdir } from 'node:fs/promises'
 import { optimize } from 'svgo'
-import { getArgs, cleanAndMkdir, getIconGroupsNames, read, write } from './utils.js'
+import { getArgs, cleanAndMkdir, getIconGroups, read, write, getIconVariants } from './utils.js'
 
 async function main () {
   const args = getArgs(process.argv)
@@ -11,34 +11,38 @@ async function main () {
 
   await cleanAndMkdir(args.distFolder)
 
-  const groups = await getIconGroupsNames()
+  const groups = await getIconGroups()
   await groups.forEach(async group => {
-    const groupPath = `./${args.distFolder}/${group}`
-    mkdir(groupPath)
+    mkdir(`${args.distFolder}/${group}`)
+    const variants = await getIconVariants(group)
+    await variants.forEach(async variant => {
+      const variantPath = `${args.distFolder}/${group}/${variant}`
+      mkdir(variantPath)
 
-    const fileNames = await readdir(`./${args.sourceFolder}/${group}`)
+      const fileNames = await readdir(`${args.sourceFolder}/${group}/${variant}`)
 
-    fileNames.forEach(async (fileName) => {
-      const filePath = `./${args.sourceFolder}/${group}/${fileName}`
+      fileNames.forEach(async (fileName) => {
+        const filePath = `${args.sourceFolder}/${group}/${variant}/${fileName}`
 
-      const svgContent = await read(filePath)
-      const svgOptimized = optimize(svgContent, {
-        path: resolve(filePath),
-        multipass: true,
-        plugins: [
-          {
-            name: 'preset-default',
-            params: {
-              overrides: {
-                removeViewBox: false
+        const svgContent = await read(filePath)
+        const svgOptimized = optimize(svgContent, {
+          path: resolve(filePath),
+          multipass: true,
+          plugins: [
+            {
+              name: 'preset-default',
+              params: {
+                overrides: {
+                  removeViewBox: false
+                }
               }
-            }
-          },
-          'removeDimensions'
-        ]
-      })
+            },
+            'removeDimensions'
+          ]
+        })
 
-      await write(`${groupPath}/${fileName}`, svgOptimized.data)
+        await write(`${variantPath}/${fileName}`, svgOptimized.data)
+      })
     })
   })
 
