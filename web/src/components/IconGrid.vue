@@ -46,13 +46,16 @@ const CryptoIcons = {
     Broken: cryptoBrokenIcons,
 }
 
-const icons = Object.keys(boldIcons).map(icon => icon.replace('Icon', ''));
-const cryptoIcons = Object.keys(cryptoBoldIcons).map(icon => icon.replace('Icon', ''));
+const iconSet = new Set([...Object.keys(boldIcons),...Object.keys(outlineIcons),...Object.keys(bulkIcons),...Object.keys(linearIcons),...Object.keys(twoToneIcons),...Object.keys(brokenIcons)])
+const cryptoSet = new Set([...Object.keys(cryptoBoldIcons),...Object.keys(cryptoOutlineIcons),...Object.keys(cryptoBulkIcons),...Object.keys(cryptoLinearIcons),...Object.keys(cryptoTwoToneIcons),...Object.keys(cryptoBrokenIcons)])
+
+const icons = Array.from(iconSet).map(icon => icon.replace('Icon', ''));
+const cryptoIcons = Array.from(cryptoSet).map(icon => icon.replace('Icon', ''));
 </script>
 
 <template>
     <section class="grid grid-cols-[repeat(auto-fill,minmax(8rem,1fr))] gap-x-6 gap-y-4">
-        <template v-for="icon in icons">
+        <template v-for="(icon) in icons">
             <article v-if="Icons[activeStyle][`${icon}Icon`] && isFiltered(icon)" tabindex="0" @click="() => copyIcon(icon)" class="group focus-visible:outline-none">
                 <div class="border shadow-sm rounded-md flex justify-center items-center p-8 cursor-pointer group group-hover:scale-110 group-focus-visible:scale-110 active:scale-100 duration-100 ease-in-out">
                     <component :is="Icons[activeStyle][`${icon}Icon`]" :class="['w-9 h-9 group-hover:scale-150 group-focus-visible:scale-150 duration-100 ease-in-out']" :style="{ color: activeColor }" />
