@@ -39,7 +39,13 @@ export const getArgs = (args) => {
   }
 }
 
-const prepareSvg = svg => svg.replace(/(fill|stroke)="(#[0-9a-fA-F]+)"/g, '$1="currentColor"')
+const prepareSvg = (svg) => {
+  // remove background on bulk crypto icons
+  svg = svg.replace('<path d="M24 0H0V24H24V0Z" fill="white"/>', '')
+  svg = svg.replace('<path opacity="0.58" d="M24 0H0V24H24V0Z" fill="white"/>', '')
+
+  return svg.replace(/(fill|stroke)="(#[0-9a-fA-F]+)"/g, '$1="currentColor"')
+}
 
 const compileVue = source => {
   const { code } = compile(source, { mode: 'module' })
@@ -58,12 +64,12 @@ export const buildIcons = async (sourceFolder = './src', distFolder = './dist') 
   const groups = await getIconGroups()
   await groups.forEach(async group => {
     const groupPath = `${distFolder}/${group}`
-    mkdir(groupPath)
+    await mkdir(groupPath)
 
     const variants = await getIconVariants(group)
     await variants.forEach(async variant => {
       const variantPath = `${groupPath}/${variant}`
-      mkdir(variantPath)
+      await mkdir(variantPath)
 
       await write(`${variantPath}/index.js`, '')
       await write(`${variantPath}/index.d.js`, '')
