@@ -1,24 +1,30 @@
-import { getArgs, read, write, buildIcons, getIconGroupsNames } from './utils.js'
+import { getArgs, read, write, buildIcons, getIconGroups, getIconVariants } from './utils.js'
 
 const updatePackageJson = async (distFolder = './dist', path = './package.json') => {
   const pkg = JSON.parse(await read(path))
   pkg.exports = {}
   pkg.exports['.'] = { import: './index.js' }
 
-  const groups = await getIconGroupsNames()
+  const groups = await getIconGroups()
 
   for (const group of groups) {
-    console.log('Exporting', group)
-    const exportPath = `${distFolder}/${group}/`
+    const variants = await getIconVariants(group)
+    for (const variant of variants) {
+      let exportPath = `${group}/${variant}`
+      console.log('Exporting', exportPath)
 
-    pkg.exports[`./${group}`] = {
-      types: `${exportPath}index.d.ts`,
-      import: `${exportPath}index.js`
-    }
+      if (group === 'Base') exportPath = variant
+      const referencePath = `${distFolder}/${group}/${variant}/`
 
-    pkg.exports[`./${group}/*`] = pkg.exports[`./${group}/*.js`] = {
-      types: `${exportPath}*.d.ts`,
-      import: `${exportPath}*.js`
+      pkg.exports[`./${exportPath}`] = {
+        types: `${referencePath}index.d.ts`,
+        import: `${referencePath}index.js`
+      }
+
+      pkg.exports[`./${exportPath}/*`] = pkg.exports[`./${exportPath}/*.js`] = {
+        types: `${referencePath}*.d.ts`,
+        import: `${referencePath}*.js`
+      }
     }
   }
 

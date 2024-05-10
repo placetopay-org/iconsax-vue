@@ -7,6 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## 1.0.0-beta.5 - 2024-05-10
+
+## 1.0.0-beta.4 - 2024-05-10
+### Fixed
+- Remove background for icon on broken variant.
+
+## 1.0.0-beta.3 - 2024-05-10
+### Fixed
+- Manually remove background on crypto icons assets.
+
+## 1.0.0-beta.2 - 2024-05-10
+
+## 1.0.0-beta.1 - 2024-05-10
+### Fixed
+- Remove background on crypto icons.
+
+## 1.0.0-beta.0 - 2024-04-30
+### Added
+- Crypto icons available.
+
 ## 0.0.7 - 2024-02-21
 ### Fixed
 - Improve svg prepare function.
