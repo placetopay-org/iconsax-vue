@@ -39,14 +39,7 @@ export const getArgs = (args) => {
   }
 }
 
-const prepareSvg = (svg) => {
-  // remove background on bulk crypto icons
-  svg = svg.replace('<path d="M24 0H0V24H24V0Z" fill="white"/>', '')
-  svg = svg.replace('<path opacity="0.58" d="M24 0H0V24H24V0Z" fill="white"/>', '')
-  svg = svg.replace('<path fill="#fff" d="M24 0H0v24h24z" opacity=".58"/>', '')
-
-  return svg.replace(/(fill|stroke)="(#[0-9a-fA-F]+)"/g, '$1="currentColor"')
-}
+const prepareSvg = (svg) => svg.replace(/(fill|stroke)="(#[0-9a-fA-F]+)"/g, '$1="currentColor"')
 
 const compileVue = source => {
   const { code } = compile(source, { mode: 'module' })
